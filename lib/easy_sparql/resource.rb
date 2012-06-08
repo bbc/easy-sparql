@@ -94,7 +94,6 @@ module EasySparql
     def self.find_by_uri_from_sparql(uri)
       uri = RDF::URI.new(uri) if uri.class == String
       results = sparql.select.where([uri, :p, :o]).execute
-      return if results.empty?
       bindings = []
       results.each do |result|
         bindings << [ result.p, result.o ]

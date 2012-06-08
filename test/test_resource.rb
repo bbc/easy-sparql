@@ -46,12 +46,6 @@ class ResourceTest < Test::Unit::TestCase
     assert_equal(r1, r2)
   end
 
-  def test_find_by_uri_no_results
-    load_rdf '<http://ex.co/programme-1> <http://purl.org/ontology/po/brand> <http://ex.co/brand-1>.'
-    r = Resource.find_by_uri('http://ex.co/brand-1')
-    assert_equal(nil, r) # We only take outgoing triples into account
-  end
-
   def test_find_type
     load_rdf '<http://ex.co/programme-1> a <http://ex.co/class-1> .'
     t = Resource.find_type('http://ex.co/programme-1')
