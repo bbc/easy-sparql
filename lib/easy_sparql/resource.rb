@@ -108,6 +108,10 @@ module EasySparql
       results[0][:type] unless results.empty?
     end
 
+    def self.sparql
+      SPARQL::Client.new sparql_uri
+    end
+
     protected
 
     def method_missing(name, *args, &block)
@@ -126,10 +130,6 @@ module EasySparql
       else
         nil
       end
-    end
-
-    def self.sparql
-      SPARQL::Client.new sparql_uri
     end
 
   end
