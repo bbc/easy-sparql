@@ -112,6 +112,10 @@ module EasySparql
       SPARQL::Client.new sparql_uri
     end
 
+    def sparql
+      Resource.sparql
+    end
+
     protected
 
     def method_missing(name, *args, &block)
