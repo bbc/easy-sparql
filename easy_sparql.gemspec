@@ -9,5 +9,5 @@ Gem::Specification.new do |s|
   s.authors = ['Yves Raimond']
   s.files = ["lib/easy_sparql.rb", "lib/easy_sparql/resource.rb"]
   s.add_dependency 'sparql-client'
-  s.add_dependency 'active_support'
+  s.add_dependency 'activesupport'
 end
