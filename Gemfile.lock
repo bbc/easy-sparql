@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    active_support (3.0.0)
+      activesupport (= 3.0.0)
+    activesupport (3.0.0)
+    addressable (2.2.8)
+    json_pure (1.7.3)
+    net-http-persistent (2.7)
+    rdf (0.3.5.2)
+      addressable (>= 2.2.6)
+    sparql-client (0.1.1.1)
+      json_pure (>= 1.6.5)
+      net-http-persistent (>= 1.4.1)
+      rdf (>= 0.3.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  active_support
+  sparql-client
