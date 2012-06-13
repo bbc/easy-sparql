@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = "A (very limited) library for exploring SPARQL endpoints simply"
   s.has_rdoc = false
   s.authors = ['Yves Raimond']
-  s.files = ["lib/easy_sparql.rb", "lib/easy_sparql/resource.rb"]
+  s.files = ["lib/easy_sparql.rb", "lib/easy_sparql/resource.rb", "lib/easy_sparql/mock_cache.rb"]
   s.add_dependency 'sparql-client'
   s.add_dependency 'activesupport'
 end

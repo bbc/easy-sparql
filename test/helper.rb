@@ -6,35 +6,12 @@ require File.join(File.dirname(__FILE__), '..', 'lib', 'easy_sparql')
 
 TEST_REDSTORE_PORT = 1234
 
-# Mock memcached
-
-class MockCache
-
-  def initialize
-    @cache = {}
-  end
-
-  def get(key)
-    @cache[key] if @cache.has_key? key
-  end
-
-  def set(key, value)
-    @cache[key] = value
-  end
-
-  def reset!
-    @cache = {}
-  end
-
-end
-
-
 class Test::Unit::TestCase
 
   @has_data = false
 
   def setup
-    EasySparql::Resource.cache = MockCache.new
+    EasySparql::Resource.cache = EasySparql::MockCache.new
   end
 
   def start_redstore
