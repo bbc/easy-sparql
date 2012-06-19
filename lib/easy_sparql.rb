@@ -34,6 +34,10 @@ module EasySparql
       objects
     end
 
+    def find_by_sparql(to_map, query)
+      find_all_by_sparql(to_map, query)[0]
+    end
+
   end
 
 end
