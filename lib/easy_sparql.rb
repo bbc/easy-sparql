@@ -20,8 +20,8 @@ module EasySparql
 
   module ClassMethods
 
-    def find_all_by_sparql(to_map, query)
-      results = EasySparql.store.sparql_client.select(*to_map).where(*query).execute
+    def find_all_by_sparql(to_map, query, limit=100, offset=0)
+      results = EasySparql.store.sparql_client.select(*to_map).where(*query).limit(limit).offset(offset).execute
       objects = []
       results.each do |result|
         to_map.each do |symbol|
