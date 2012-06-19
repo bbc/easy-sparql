@@ -24,7 +24,14 @@ class Test::Unit::TestCase
   end
 
   def load_rdf(rdf)
+    prefixes = '@prefix po: <http://purl.org/ontology/po/> .
+              @prefix ws: <http://wsarchive.prototype0.net/ontology/> .
+              @prefix dc: <http://purl.org/dc/elements/1.1/> .
+              @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+             '
+    rdf = prefixes + rdf
     start_redstore
+    EasySparql.store = EasySparql::Store.new 'http://localhost:1234/sparql/'
     EasySparql::Resource.sparql_uri = 'http://localhost:1234/sparql/'
     unless @pid.nil?
       RestClient.post("http://localhost:#{TEST_REDSTORE_PORT}/data/test.rdf", rdf, :content_type => 'application/x-turtle')
