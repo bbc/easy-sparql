@@ -32,7 +32,6 @@ class Test::Unit::TestCase
     rdf = prefixes + rdf
     start_redstore
     EasySparql.store = EasySparql::Store.new 'http://localhost:1234/sparql/'
-    EasySparql::Resource.sparql_uri = 'http://localhost:1234/sparql/'
     unless @pid.nil?
       RestClient.post("http://localhost:#{TEST_REDSTORE_PORT}/data/test.rdf", rdf, :content_type => 'application/x-turtle')
       @has_data = true

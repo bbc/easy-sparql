@@ -19,28 +19,6 @@ module EasySparql
     attr_reader :properties
     attr_reader :namespaces
 
-    @@sparql_uri = nil
-
-    def self.sparql_uri=(uri)
-      @@sparql_uri = uri
-    end
-
-    def self.sparql_uri
-      raise Exception.new "You need to set a valid SPARQL URI using Resource.sparql_uri = <uri>" unless @@sparql_uri
-      @@sparql_uri
-    end
-
-    @@update_uri = nil
-
-    def self.update_uri=(uri)
-      @@update_uri = uri
-    end
-
-    def self.update_uri
-      raise Exception.new "You need to set a valid SPARQL Update URI using Resource.update_uri = <uri>" unless @@update_uri
-      @@update_uri
-    end
-
     @@cache = nil
 
     def self.cache=(cache)
@@ -108,11 +86,7 @@ module EasySparql
     end
 
     def self.sparql
-      SPARQL::Client.new sparql_uri
-    end
-
-    def sparql
-      Resource.sparql
+      EasySparql.store.sparql_client
     end
 
     protected
