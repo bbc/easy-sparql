@@ -24,16 +24,16 @@ module EasySparql
       results = EasySparql.store.sparql_client.select(*to_map).where(*query).limit(limit).offset(offset).execute
       objects = []
       results.each do |result|
+        object = new
         to_map.each do |symbol|
           value = result[symbol]
           if value.literal? and value.plain?
             value = value.to_s
           end
           setter = (symbol.to_s + '=').to_sym
-          object = new
           object.send(setter, value)
-          objects << object
         end
+        objects << object
       end
       objects
     end
