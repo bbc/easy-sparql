@@ -25,9 +25,13 @@ module EasySparql
       objects = []
       results.each do |result|
         to_map.each do |symbol|
+          value = result[symbol]
+          if value.literal? and value.plain?
+            value = value.to_s
+          end
           setter = (symbol.to_s + '=').to_sym
           object = new
-          object.send(setter, result[symbol].value)
+          object.send(setter, value)
           objects << object
         end
       end
