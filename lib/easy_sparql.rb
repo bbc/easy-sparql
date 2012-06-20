@@ -14,14 +14,19 @@ module EasySparql
     @store
   end
 
+  def self.query
+    store.sparql_client
+  end
+
   def self.included(base)
     base.extend(ClassMethods)
   end
 
   module ClassMethods
 
-    def find_all_by_sparql(to_map, query, limit=100, offset=0)
-      results = EasySparql.store.sparql_client.select(*to_map).where(*query).limit(limit).offset(offset).execute
+    def find_all_by_sparql(query)
+      to_map = query.values.map { |symbol, var| symbol }
+      results = query.execute
       objects = []
       results.each do |result|
         object = new
@@ -38,8 +43,8 @@ module EasySparql
       objects
     end
 
-    def find_by_sparql(to_map, query)
-      find_all_by_sparql(to_map, query)[0]
+    def find_by_sparql(query)
+      find_all_by_sparql(query)[0]
     end
 
   end

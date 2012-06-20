@@ -17,7 +17,7 @@ utilities to map SPARQL queries to model instances.
     include EasySparql
     attr_accessor :title
   end
-  episodes = Episode.find\_all\_by\_sparql( [ :title ], [ [ :uri, RDF.type, RDF::PO.Episode ], [ :uri, RDF::DC11.title, :title ] ])
+  episodes = Episode.find\_all\_by\_sparql(EasySparql.query.select(:title).where([ :uri, RDF.type, RDF::PO.Episode ], [ :uri, RDF::DC11.title, :title ] ).limit(10))
   episodes[0].title
 
 
