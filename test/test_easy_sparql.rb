@@ -44,4 +44,14 @@ class EasySparqlTest < Test::Unit::TestCase
     assert_equal Programme, programme.class
   end
 
+  def test_find_by_sparql_and_optional
+    load_rdf '<http://ex.co/programme-1> a <http://purl.org/ontology/po/Brand> .'
+    programme = Programme.find_by_sparql(EasySparql.query.select(:title).where(
+      [ RDF::URI.new('http://ex.co/programme-1'), RDF.type, RDF::PO.Brand ]
+    ).optional(
+      [ RDF::URI.new('http://ex.co/programme-1'), RDF::DC11.title, :title ]
+    ))
+    assert_equal Programme, programme.class
+  end
+
 end

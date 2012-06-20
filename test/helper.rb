@@ -17,9 +17,9 @@ class Test::Unit::TestCase
   def start_redstore
     @pid = Process.fork
     if @pid.nil? then
-      exec "redstore -q -p #{TEST_REDSTORE_PORT}"
+      exec "redstore -q -p #{TEST_REDSTORE_PORT} -s sqlite test/test.db -n"
     else
-      sleep(0.1)
+      sleep(0.2)
     end
   end
 
