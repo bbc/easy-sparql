@@ -24,6 +24,10 @@ module EasySparql
 
   module ClassMethods
 
+    def query
+      EasySparql.query
+    end
+
     def find_all_by_sparql(query)
       to_map = query.values.map { |symbol, var| symbol }
       results = query.execute
