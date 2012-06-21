@@ -54,4 +54,9 @@ class EasySparqlTest < Test::Unit::TestCase
     assert_equal Programme, programme.class
   end
 
+  def test_query_object_accesible_at_class_and_instance_level
+    assert Programme.query
+    assert Programme.new.query
+  end
+
 end

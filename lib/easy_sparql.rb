@@ -53,4 +53,8 @@ module EasySparql
 
   end
 
+  def query
+    EasySparql.query
+  end
+
 end
