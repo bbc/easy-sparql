@@ -10,7 +10,7 @@ module EasySparql
   end
 
   def self.store
-    raise Exception("You need to specify a store using EasySparql.store = ... before trying to access it") unless @store
+    raise Exception.new("You need to specify a store using EasySparql.store = ... before trying to access it") unless @store
     @store
   end
 
