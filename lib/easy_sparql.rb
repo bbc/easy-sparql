@@ -2,6 +2,7 @@ require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'stor
 require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'resource.rb')
 require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'mock_cache.rb')
 require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'vocab.rb')
+require 'date'
 
 module EasySparql
 
@@ -36,8 +37,8 @@ module EasySparql
         object = new
         to_map.each do |symbol|
           value = result[symbol]
-          if value and value.literal? and value.plain?
-            value = value.to_s
+          if value and value.literal?
+            value = value.object
           end
           setter = (symbol.to_s + '=').to_sym
           object.send(setter, value)

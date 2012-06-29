@@ -6,7 +6,7 @@ class EasySparqlTest < Test::Unit::TestCase
 
     include EasySparql
 
-    attr_accessor :title, :description
+    attr_accessor :title, :description, :date
 
   end
 
@@ -42,6 +42,18 @@ class EasySparqlTest < Test::Unit::TestCase
     ))
     assert_equal "Programme 2", programme.title
     assert_equal Programme, programme.class
+  end
+
+  def test_find_by_sparql_casts_dates
+    load_rdf '<http://ex.co/programme-1> dc:date "2010-08-07T12:00:00+00:00"^^xsd:dateTime .'
+    programme = Programme.find_by_sparql(EasySparql.query.select(:date).where(
+      [ RDF::URI.new('http://ex.co/programme-1'), RDF::DC11.date, :date ]
+    ))
+    assert_equal DateTime, programme.date.class
+    assert_equal 2010, programme.date.year
+    assert_equal 8, programme.date.month
+    assert_equal 7, programme.date.day
+    assert_equal 12, programme.date.hour
   end
 
   def test_find_by_sparql_and_optional

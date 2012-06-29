@@ -28,6 +28,7 @@ class Test::Unit::TestCase
               @prefix ws: <http://wsarchive.prototype0.net/ontology/> .
               @prefix dc: <http://purl.org/dc/elements/1.1/> .
               @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+              @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
              '
     rdf = prefixes + rdf
     start_redstore
