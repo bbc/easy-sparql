@@ -10,6 +10,20 @@ class EasySparqlTest < Test::Unit::TestCase
 
   end
 
+  def test_count_all_by_sparql
+    load_rdf '<http://ex.co/programme-1> rdf:type po:Programme .
+              <http://ex.co/version-1> rdf:type po:Version .
+              <http://ex.co/programme-2> rdf:type po:Programme .
+              <http://ex.co/version-2> rdf:type po:Version .
+              <http://ex.co/programme-3> rdf:type po:Programme .'
+    assert_equal 3, Programme.count_all_by_sparql(EasySparql.query.count(:uri).where(
+      [ :uri, RDF.type, RDF::PO.Programme ],
+    ))
+    assert_equal 2, Programme.count_all_by_sparql(EasySparql.query.count(:uri).where(
+      [ :uri, RDF.type, RDF::PO.Version ],
+    ))
+  end
+
   def test_find_all_by_sparql
     load_rdf '<http://ex.co/programme-1> rdf:type po:Programme .
               <http://ex.co/programme-1> dc:title "Programme" .

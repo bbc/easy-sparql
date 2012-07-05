@@ -29,6 +29,11 @@ module EasySparql
       EasySparql.query
     end
 
+    def count_all_by_sparql(query)
+      results = query.execute
+      query.execute.first[:count].to_i unless results.empty?
+    end
+
     def find_all_by_sparql(query)
       to_map = query.values.map { |symbol, var| symbol }
       results = query.execute
@@ -58,4 +63,48 @@ module EasySparql
     EasySparql.query
   end
 
+end
+
+# Monkey-patching sparql-client to add count support
+module SPARQL; class Client
+
+  class Query < RDF::Query
+
+    def self.count(*variables)
+      options = variables.last.is_a?(Hash) ? variables.pop : {}
+      unless variables.size == 1 and variables.first.is_a?(Symbol)
+        raise Exception.new "Only one symbol must be provided for count"
+      end
+      self.new(:select, options).select(:count => variables.first)
+    end
+
+  end
+
+  def count(*args)
+    call_query_method(:count, *args)
+  end
+
+end; end
+
+class RDF::Query
+  class Variable
+    def initialize(name = nil, value = nil)
+      @count = false
+      if name.is_a?(Hash) and name.has_key?(:count)
+        @count = true
+        name = name[:count]
+      end
+      @name = (name || "g#{__id__.to_i.abs}").to_sym
+      @value = value
+    end
+    def count?
+      @count
+    end
+    def to_s
+      prefix = distinguished? ? '?' : "??"
+      var_s = "#{prefix}#{name}"
+      var_s =  "(COUNT(#{var_s}) AS ?count)" if count?
+      unbound? ? var_s : "#{var_s}=#{value}"
+    end
+  end
 end
