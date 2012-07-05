@@ -31,7 +31,7 @@ module EasySparql
 
     def count_all_by_sparql(query)
       results = query.execute
-      query.execute.first[:count].to_i unless results.empty?
+      results.empty? ? 0 : query.execute.first[:count].to_i
     end
 
     def find_all_by_sparql(query)
