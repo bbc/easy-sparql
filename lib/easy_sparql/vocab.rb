@@ -8,4 +8,8 @@ module RDF
 
   end
 
+  class OKB < Vocabulary("http://rdf.ontology2.com/vocab#")
+
+  end
+
 end
