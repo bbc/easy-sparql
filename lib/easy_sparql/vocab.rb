@@ -8,7 +8,11 @@ module RDF
 
   end
 
-  class OKB < Vocabulary("http://rdf.ontology2.com/vocab#")
+  class O2 < Vocabulary("http://rdf.ontology2.com/vocab#")
+
+  end
+
+  class OKB < Vocabulary("http://rdf.ookaboo.com/object/")
 
   end
 
