@@ -92,4 +92,12 @@ class EasySparqlTest < Test::Unit::TestCase
     assert Programme.new.query
   end
 
+  def test_empty_filter_works
+    load_rdf '<http://ex.co/programme-1> a <http://purl.org/ontology/po/Brand> .'
+    assert_nothing_raised do
+      results = Programme.query.select.where([:s, :p, :o]).filter('').execute
+      assert_equal 1, results.size
+    end
+  end
+
 end

@@ -78,6 +78,11 @@ module SPARQL; class Client
       self.new(:select, options).select(:count => variables.first)
     end
 
+    def filter(string)
+      (options[:filters] ||= []) << string unless string
+      self
+    end
+
   end
 
   def count(*args)
