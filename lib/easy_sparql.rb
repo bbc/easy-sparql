@@ -108,7 +108,7 @@ class RDF::Query
     def to_s
       prefix = distinguished? ? '?' : "??"
       var_s = "#{prefix}#{name}"
-      var_s =  "(COUNT(#{var_s}) AS ?count)" if count?
+      var_s =  "(COUNT(DISTINCT #{var_s}) AS ?count)" if count?
       unbound? ? var_s : "#{var_s}=#{value}"
     end
   end
