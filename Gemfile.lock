@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/bbcrd/sparql-client.git
-  revision: 17b2ab11700f5b761981d864f6ab074d534aced2
+  revision: 24f81ab4a4ffc8c7d04e37afd5ff34bde9889561
   specs:
-    sparql-client (0.1.1)
+    sparql-client (0.3.0)
       json_pure (>= 1.6.5)
       net-http-persistent (>= 1.4.1)
       rdf (>= 0.3.5)
