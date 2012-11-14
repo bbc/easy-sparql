@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/bbcrd/sparql-client.git
-  revision: 24f81ab4a4ffc8c7d04e37afd5ff34bde9889561
+  revision: 6e459495b71fc00d888cb15e55f39350ad488aa0
   specs:
     sparql-client (0.3.0)
       json_pure (>= 1.6.5)
@@ -16,14 +16,20 @@ GEM
     addressable (2.3.2)
     i18n (0.6.0)
     json_pure (1.7.5)
+    mime-types (1.19)
     multi_json (1.3.6)
-    net-http-persistent (2.7)
-    rdf (0.3.8)
+    net-http-persistent (2.8)
+    rake (10.0.0)
+    rdf (0.3.9)
       addressable (>= 2.2.6)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   activesupport
+  rake
+  rest-client
   sparql-client!
