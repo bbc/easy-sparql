@@ -34,3 +34,8 @@ to explore the graph stored in a remote triple store.
   resource.dc\_title
 
 
+
+Running the tests
+-----------------
+
+The tests rely on the lightweight RedStore triplestore: http://www.aelius.com/njh/redstore/
