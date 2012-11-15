@@ -13,15 +13,15 @@ The EasySparql::Resource class provides some graph-walking facilities,
 to explore the graph stored in a remote triple store. This mode is useful
 for rapidly prototyping an application on top of a triple store.
 
-    require 'easy\_sparql'
+    require 'easy_sparql'
     include EasySparql
     EasySparql.store = EasySparql::Store.new 'http://dbpedia.org/sparql/'
-    Resource.add\_namespace 'dbpo' => 'http://dbpedia.org/ontology/'
-    resource = Resource.find\_by\_uri('http://dbpedia.org/resource/Doctor\_Who')
-    resource.rdfs\_label
+    Resource.add_namespace 'dbpo' => 'http://dbpedia.org/ontology/'
+    resource = Resource.find_by_uri('http://dbpedia.org/resource/Doctor\_Who')
+    resource.rdfs_label
     resource.properties
-    resource.dbpo\_genre.uri
-    resource.dbpo\_country.dbpo\_largestCity.uri
+    resource.dbpo_genre.uri
+    resource.dbpo_country.dbpo\_largestCity.uri
 
 
 EasySparql
@@ -33,13 +33,13 @@ for applications needing to specify explicitly the SPARQL queries
 that can be executed.
 
 
-    require 'easy\_sparql'
+    require 'easy_sparql'
     EasySparql.store = EasySparql::Store.new 'http://dbpedia.org/sparql/'
     class TelevisionShow
       include EasySparql
       attr_accessor :title, :uri
     end
-    shows = TelevisionShow.find\_all\_by\_sparql(
+    shows = TelevisionShow.find_all_by_sparql(
       EasySparql.query.select(:uri, :title).where(
         [ :uri, RDF.type, RDF::URI.new('http://dbpedia.org/ontology/TelevisionShow') ], 
         [ :uri, RDF::RDFS.label, :title ] 
