@@ -57,3 +57,9 @@ Once RedStore is installed:
 
     $ bundle install
     $ bundle exec rake
+
+
+Licensing terms and authorship
+------------------------------
+
+See 'COPYING' and 'AUTHORS' files.
