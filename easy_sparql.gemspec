@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "easy_sparql"
-  s.version = "0.0.3"
-  s.date = "2012-07-05"
+  s.version = "0.1.0"
+  s.date = "2012-11-15"
   s.summary = "Simple wrapper to explore SPARQL endpoints"
   s.email = "yves.raimond@bbc.co.uk"
   s.description = "A (very limited) library for exploring SPARQL endpoints simply"
