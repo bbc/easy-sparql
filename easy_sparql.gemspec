@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
   s.files = ["lib/easy_sparql.rb", "lib/easy_sparql/resource.rb", "lib/easy_sparql/mock_cache.rb", "lib/easy_sparql/store.rb", "lib/easy_sparql/vocab.rb"]
   s.add_dependency 'sparql-client'
   s.add_dependency 'activesupport'
+  s.add_dependency 'rest-client'
 end
