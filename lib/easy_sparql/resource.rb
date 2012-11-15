@@ -33,6 +33,16 @@ module EasySparql
       @@property_map.merge! mapping
     end
 
+    def self.add_namespace(mappings)
+      mappings.each do |k, v|
+        @@namespaces[k] = v
+      end
+    end
+
+    def self.namespaces
+      @@namespaces
+    end
+
     def initialize(uri = nil, bindings = [])
       @properties = []
       @method_bindings = {}

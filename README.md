@@ -16,8 +16,12 @@ for rapidly prototyping an application on top of a triple store.
   require 'easy\_sparql'
   include EasySparql
   EasySparql.store = EasySparql::Store.new 'http://dbpedia.org/sparql/'
+  Resource.add\_namespace 'dbpo' => 'http://dbpedia.org/ontology/'
   resource = Resource.find\_by\_uri('http://dbpedia.org/resource/Doctor\_Who')
   resource.rdfs\_label
+  resource.properties
+  resource.dbpo\_genre.uri
+  resource.dbpo\_country.dbpo\_largestCity.uri
 
 
 EasySparql

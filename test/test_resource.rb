@@ -4,6 +4,12 @@ class ResourceTest < Test::Unit::TestCase
 
   include EasySparql
 
+  def test_add_namespace
+    Resource.add_namespace 'foo' => 'bar', 'foo2' => 'bar2'
+    assert_equal 'bar', Resource.namespaces['foo']
+    assert_equal 'bar2', Resource.namespaces['foo2']
+  end
+
   def test_initialize
     r = Resource.new
     assert_equal(nil, r.uri)
