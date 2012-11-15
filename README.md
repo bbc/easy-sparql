@@ -1,7 +1,7 @@
 easy-sparql
 ===========
 
-A gem to explore SPARQL end-points easily. It provides two main modes:
+A gem to explore and exploit SPARQL end-points easily. It provides two main modes:
 
 * Exploring the graph held in a triple store
 * Mapping SPARQL queries to model instances
