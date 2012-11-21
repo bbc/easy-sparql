@@ -18,6 +18,7 @@ require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'stor
 require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'resource.rb')
 require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'mock_cache.rb')
 require File.join(File.expand_path(File.dirname(__FILE__)), 'easy_sparql', 'vocab.rb')
+require 'securerandom'
 require 'date'
 
 module EasySparql
@@ -50,23 +51,38 @@ module EasySparql
       results.empty? ? 0 : query.execute.first[:count].to_i
     end
 
-    def find_all_by_sparql(query)
+    def find_all_by_sparql(query, params = {})
       to_map = query.values.map { |symbol, var| symbol }
       results = query.execute
-      objects = []
+      objects = {}
       results.each do |result|
-        object = new
-        to_map.each do |symbol|
-          value = result[symbol]
-          if value and value.literal?
-            value = value.object
-          end
-          setter = (symbol.to_s + '=').to_sym
-          object.send(setter, value)
+        if params[:key] and result[params[:key]]
+          key = result[params[:key]]
+        else
+          key = SecureRandom.uuid
         end
-        objects << object
+        object = (objects.has_key? key) ? objects[key] : new
+        to_map.each do |symbol|
+          unless symbol == params[:key]
+            value = result[symbol]
+            if value and value.literal?
+              value = value.object
+            end
+            setter = (symbol.to_s + '=').to_sym
+            old_val = object.send(symbol)
+            if old_val and old_val.kind_of? Array
+              new_val = (old_val + [value])
+            elsif old_val
+              new_val = [old_val, value]
+            else
+              new_val = value
+            end
+            object.send(setter, new_val)
+          end
+        end
+        objects[key] = object
       end
-      objects
+      objects.values
     end
 
     def find_by_sparql(query)

@@ -43,9 +43,9 @@ that can be executed.
       EasySparql.query.select(:uri, :title).where(
         [ :uri, RDF.type, RDF::URI.new('http://dbpedia.org/ontology/TelevisionShow') ], 
         [ :uri, RDF::RDFS.label, :title ] 
-      ).filter('lang(?title) = "en"').limit(10)
-    )
-    puts shows.map { |s| s.title }
+      ).limit(10),
+      { :key => :uri })
+    puts shows.first.title
 
 
 Running the tests

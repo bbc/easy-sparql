@@ -35,7 +35,7 @@ class Test::Unit::TestCase
     if @pid.nil? then
       exec "redstore -q -p #{TEST_REDSTORE_PORT} -s sqlite test/test.db -n"
     else
-      sleep(0.2)
+      sleep(0.4)
     end
   end
 
